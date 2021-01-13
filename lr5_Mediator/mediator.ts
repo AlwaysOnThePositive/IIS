@@ -1,4 +1,4 @@
-import { Checkbox, Input, Button } from './components';
+import { Checkbox, Input, Button } from "./components";
 
 export enum Events {
   SHOW_MIDDLE_NAME = 0,
@@ -25,7 +25,6 @@ class ConcreteMediator implements ProtoMediator {
   }
 
   public notify(sender: object, event: Events): void {
-    console.log(`sender is ${sender}`);
     switch (event) {
       case Events.RESET_FIELDS:
         console.log("Mediator reacts on Events.RESET_FIELDS");
