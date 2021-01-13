@@ -1,10 +1,12 @@
-enum Events {
+import { Checkbox, Input, Button } from './components';
+
+export enum Events {
   SHOW_MIDDLE_NAME = 0,
   HIDE_MIDDLE_NAME = 1,
   RESET_FIELDS = 2,
 }
 
-interface ProtoMediator {
+export interface ProtoMediator {
   notify(sender: object, event: Events): void;
 }
 
@@ -45,51 +47,6 @@ class ConcreteMediator implements ProtoMediator {
   }
 }
 
-class BaseComponent {
-  protected mediator: ProtoMediator;
-
-  constructor(mediator: ProtoMediator = null) {
-    this.mediator = mediator;
-  }
-
-  public setMediator(mediator: ProtoMediator): void {
-    this.mediator = mediator;
-  }
-}
-
-class Checkbox extends BaseComponent {
-  public showMiddleName(): void {
-    console.log("MiddleName checkbox show middleName");
-    this.mediator.notify(this, Events.SHOW_MIDDLE_NAME);
-  }
-
-  public hideMiddleName(): void {
-    console.log("MiddleName checkbox hide middleName");
-    this.mediator.notify(this, Events.HIDE_MIDDLE_NAME);
-  }
-}
-
-class Input extends BaseComponent {
-  public setVisible(): void {
-    console.log("Input was visible");
-  }
-
-  public setInvisible(): void {
-    console.log("Input was invisible");
-  }
-
-  public clearInput(): void {
-    console.log("Input was cleared");
-  }
-}
-
-class Button extends BaseComponent {
-  public resetFields(): void {
-    console.log("Login Button reset fields");
-    this.mediator.notify(this, Events.RESET_FIELDS);
-  }
-}
-
 function clientCode(): void {
   const chanboxMiddlename = new Checkbox();
   const buttonSave = new Button();
@@ -108,4 +65,4 @@ function clientCode(): void {
   buttonSave.resetFields();
 }
 
-this.clientCode();
+clientCode();
